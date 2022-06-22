@@ -1,0 +1,4 @@
+rootProject.name = 'youzheng-web'
+include 'common'
+include 'user-service'
+include 'board-service'
