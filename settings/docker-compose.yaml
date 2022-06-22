@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  mysql-server:
+    # (1) M1 맥북일 경우 mysql:8.0.2 처럼 마지막 버전을 상세히 적으면 실행할 수 없다.
+    image: mysql:8.0
+    # (2) M1 일 경우에 platform 을 명시해주세요.
+    platform: linux/amd64
+    container_name: mysql-server
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=dnwjd123
+      - TZ=Asia/Seoul
+    # (3) 본인 것으로  수정! 만약 따로 볼륨 설정을 원하지 않는다면 삭제
+    volumes:
+      - /Users/youzheng/Data/mysql:/var/lib/mysql
