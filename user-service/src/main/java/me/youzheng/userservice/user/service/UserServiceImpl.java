@@ -1,10 +1,15 @@
 package me.youzheng.userservice.user.service;
 
+import com.sun.tools.javac.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import me.youzheng.userservice.exception.UserException;
+import me.youzheng.userservice.user.domain.Role;
 import me.youzheng.userservice.user.domain.User;
+import me.youzheng.userservice.user.domain.dto.UserResponse;
 import me.youzheng.userservice.user.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -30,9 +35,15 @@ public class UserServiceImpl implements UserService {
         if (this.userRepository.existsByLoginId(user.getLoginId())) {
             throw new UserException("이미 사용중인 아이디입니다.");
         }
+
+        user.setRole(Role.USER);
         user.setPassword(this.passwordEncoder.encode(user.getPassword()));
-        // TODO 검증 필요
         return this.userRepository.save(user);
+    }
+
+    @Override
+    public Page<List<UserResponse>> fetchUsers(Pageable pageable) {
+        return null;
     }
 
 }
