@@ -23,6 +23,12 @@ spring:
   redis:
     host: localhost
     port: 6379
+    password: dnwjd123
+
+jwt:
+  secret-key: jfasdklfjlaskdfjlaksdfjfklasdjflkasdjfkldsajdfjaklsdfjkasdlfjflkasdfjlk
+  expired-seconds: 600
+
 
 server:
   port: 9091

@@ -1,7 +1,7 @@
 package me.youzheng.userservice.security.domain;
 
-public enum Role {
+public enum JwtResult {
 
-    USER, ADMIN
+    VALID, EXPIRED
 
 }
