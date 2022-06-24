@@ -17,4 +17,6 @@ public class DataConfig {
         return new JPAQueryFactory(this.entityManager);
     }
 
+
+
 }
