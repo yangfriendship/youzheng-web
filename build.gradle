@@ -30,16 +30,13 @@ subprojects {
             extendsFrom annotationProcessor
         }
     }
+
+    // 공통
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
         implementation 'org.springframework.boot:spring-boot-starter-security'
-        implementation 'org.springframework.boot:spring-boot-starter-validation'
-        implementation 'org.springframework.boot:spring-boot-starter-web'
         compileOnly 'org.projectlombok:lombok'
-        runtimeOnly 'com.h2database:h2'
-        runtimeOnly 'mysql:mysql-connector-java'
-        annotationProcessor 'org.projectlombok:lombok'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'org.springframework.security:spring-security-test'
 
         implementation 'org.springframework.boot:spring-boot-starter-data-redis'
@@ -49,6 +46,31 @@ subprojects {
         implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.1'
         runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.1'
         runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.1'
+
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        annotationProcessor 'org.projectlombok:lombok'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+        // Data
+        runtimeOnly 'com.h2database:h2'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        runtimeOnly 'mysql:mysql-connector-java'
+
+        implementation 'org.springframework.cloud:spring-cloud-build-dependencies'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
     }
 
+}
+
+project(':user-service') {
+    dependencies {
+        implementation project(':common')
+    }
+
+}
+
+project(':board-service') {
+    dependencies {
+    }
 }

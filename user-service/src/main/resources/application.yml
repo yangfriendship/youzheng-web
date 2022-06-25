@@ -2,7 +2,7 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:mysql://localhost:3306/youzheng_web
+    url: jdbc:mysql://localhost:3306/youzheng_web?serverTimezone=Asia/Seoul
     username: root
     password: dnwjd123
     hikari:
@@ -31,7 +31,7 @@ jwt:
 
 
 server:
-  port: 9091
+  port: 8081
 
 
 ---
