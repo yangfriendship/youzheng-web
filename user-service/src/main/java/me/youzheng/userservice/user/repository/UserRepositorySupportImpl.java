@@ -1,18 +1,15 @@
 package me.youzheng.userservice.user.repository;
 
-import static me.youzheng.userservice.user.domain.QUser.*;
+import static me.youzheng.userservice.user.domain.QUser.user;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.JPQLQueryFactory;
 import java.util.List;
-import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
-import me.youzheng.userservice.user.domain.QUser;
 import me.youzheng.userservice.user.domain.User;
 import me.youzheng.userservice.user.domain.dto.UserRequest;
 import me.youzheng.userservice.user.domain.dto.UserResponse;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

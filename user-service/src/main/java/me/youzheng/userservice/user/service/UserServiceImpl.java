@@ -1,10 +1,10 @@
 package me.youzheng.userservice.user.service;
 
-import com.sun.tools.javac.util.List;
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import me.youzheng.userservice.exception.UserException;
-import me.youzheng.userservice.user.domain.Role;
+import me.youzheng.common.exception.UserException;
+import me.youzheng.common.security.domain.Role;
 import me.youzheng.userservice.user.domain.User;
 import me.youzheng.userservice.user.domain.dto.UserResponse;
 import me.youzheng.userservice.user.repository.UserRepository;

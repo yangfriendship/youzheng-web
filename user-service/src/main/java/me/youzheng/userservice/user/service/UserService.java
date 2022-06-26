@@ -1,6 +1,6 @@
 package me.youzheng.userservice.user.service;
 
-import com.sun.tools.javac.util.List;
+import java.util.List;
 import me.youzheng.userservice.user.domain.User;
 import me.youzheng.userservice.user.domain.dto.UserResponse;
 import org.springframework.data.domain.Page;

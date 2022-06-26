@@ -1,8 +1,6 @@
 package me.youzheng.userservice.user.controller;
 
-import com.sun.tools.javac.util.List;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.youzheng.userservice.user.domain.User;
