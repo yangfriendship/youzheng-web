@@ -72,5 +72,6 @@ project(':user-service') {
 
 project(':board-service') {
     dependencies {
+        implementation project(':common')
     }
 }

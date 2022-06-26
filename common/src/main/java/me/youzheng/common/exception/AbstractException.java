@@ -1,4 +1,4 @@
-package me.youzheng.userservice.exception;
+package me.youzheng.common.exception;
 
 public class AbstractException extends RuntimeException {
 

@@ -1,9 +1,9 @@
 package me.youzheng.userservice.security.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javax.servlet.Filter;
 import lombok.RequiredArgsConstructor;
-import me.youzheng.userservice.security.filter.TokenAuthenticationFilter;
+import me.youzheng.common.security.util.JwtProvider;
+import me.youzheng.common.security.filter.TokenAuthenticationFilter;
 import me.youzheng.userservice.security.filter.TokenLoginProcessorFilter;
 import me.youzheng.userservice.security.handler.AccessDeniedHandlerImpl;
 import me.youzheng.userservice.security.handler.AuthenticationEntryPointImpl;
@@ -11,7 +11,6 @@ import me.youzheng.userservice.security.handler.AuthenticationFailureHandlerImpl
 import me.youzheng.userservice.security.handler.AuthenticationSuccessHandlerImpl;
 import me.youzheng.userservice.security.provider.UserAuthenticationProvider;
 import me.youzheng.userservice.security.service.UserDetailsServiceImpl;
-import me.youzheng.userservice.security.util.JwtProvider;
 import me.youzheng.userservice.user.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package me.youzheng.userservice.exception;
+package me.youzheng.common.exception;
 
 import org.springframework.http.HttpStatus;
 

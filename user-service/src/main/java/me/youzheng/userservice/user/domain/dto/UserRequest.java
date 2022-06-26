@@ -1,7 +1,7 @@
 package me.youzheng.userservice.user.domain.dto;
 
 import lombok.Data;
-import me.youzheng.userservice.user.domain.Role;
+import me.youzheng.common.security.domain.Role;
 
 @Data
 public class UserRequest {

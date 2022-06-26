@@ -1,4 +1,4 @@
-package me.youzheng.userservice.user.domain;
+package me.youzheng.common.security.domain;
 
 import java.util.Arrays;
 

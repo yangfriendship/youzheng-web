@@ -1,4 +1,4 @@
-package me.youzheng.userservice.security.filter;
+package me.youzheng.common.security.filter;
 
 import java.io.IOException;
 import javax.servlet.FilterChain;
@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import me.youzheng.userservice.security.domain.JwtResult;
-import me.youzheng.userservice.security.util.JwtProvider;
+import me.youzheng.common.security.domain.JwtResult;
+import me.youzheng.common.security.util.JwtProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,7 +17,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     public static final String TOKEN_PREFIX = "Bearer ";
-
     private final JwtProvider jwtProvider;
 
     @Override

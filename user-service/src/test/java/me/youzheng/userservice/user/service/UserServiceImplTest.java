@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
-import me.youzheng.userservice.exception.UserException;
+import me.youzheng.common.exception.UserException;
 import me.youzheng.userservice.user.domain.User;
 import me.youzheng.userservice.user.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;

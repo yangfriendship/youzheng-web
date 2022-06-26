@@ -1,4 +1,4 @@
-package me.youzheng.userservice.security.util;
+package me.youzheng.common.security.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -8,11 +8,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.Date;
-import me.youzheng.userservice.exception.UserException;
-import me.youzheng.userservice.security.domain.JwtResult;
-import me.youzheng.userservice.user.domain.Role;
-import me.youzheng.userservice.security.domain.UserContext;
-import me.youzheng.userservice.user.domain.User;
+import me.youzheng.common.security.domain.JwtResult;
+import me.youzheng.common.security.domain.Role;
+import me.youzheng.common.security.domain.UserContext;
+import me.youzheng.common.security.domain.UserEntity;
+import me.youzheng.common.exception.UserException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
@@ -36,7 +36,7 @@ public class JwtProvider {
     public String createToken(Authentication authentication) {
 
         UserContext context = (UserContext) authentication.getPrincipal();
-        User user = context.getUser();
+        UserEntity user = context.getUserEntity();
 
         return TOKEN_PREFIX + Jwts.builder()
             .setSubject(SUB)
@@ -67,7 +67,7 @@ public class JwtProvider {
         String role = (String) claims.get("auth");
         Integer id = (Integer) claims.get("id");
 
-        User user = User.builder()
+        UserEntity user = UserEntity.builder()
             .userNo(id)
             .role(Role.of(role))
             .loginId(loginId)
@@ -76,7 +76,7 @@ public class JwtProvider {
         return getUserToken(user);
     }
 
-    private UsernamePasswordAuthenticationToken getUserToken(User user) {
+    private UsernamePasswordAuthenticationToken getUserToken(UserEntity user) {
         UserContext userContext = new UserContext(user);
         return new UsernamePasswordAuthenticationToken(userContext, null,
             userContext.getAuthorities());

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.youzheng.userservice.user.domain.Role;
+import me.youzheng.common.security.domain.Role;
 import me.youzheng.userservice.user.domain.User;
 
 @Data

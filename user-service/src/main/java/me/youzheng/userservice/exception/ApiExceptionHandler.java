@@ -2,6 +2,7 @@ package me.youzheng.userservice.exception;
 
 import java.util.HashMap;
 import java.util.Map;
+import me.youzheng.common.exception.UserException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
