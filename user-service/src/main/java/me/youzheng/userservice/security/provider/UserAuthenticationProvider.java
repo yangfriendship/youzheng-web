@@ -1,7 +1,7 @@
 package me.youzheng.userservice.security.provider;
 
 import lombok.RequiredArgsConstructor;
-import me.youzheng.userservice.security.domain.UserContext;
+import me.youzheng.common.security.domain.UserContext;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
