@@ -21,4 +21,12 @@ public class UserEntity {
 
     private boolean lockYn;
 
+    public boolean isAuthenticated() {
+        return true;
+    }
+
+    public boolean canLogin() {
+        return this.lockYn;
+    }
+
 }

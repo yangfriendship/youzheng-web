@@ -21,7 +21,7 @@ public class JwtProvider {
     public static final String SUB = "Authentication";
     public static final String AUTHENTICATION_KEY = "auth";
     public static final String HOST = "http//me.youzheng.youzheng-web";
-    public static final String TOKEN_PREFIX = "bearer ";
+    public static final String TOKEN_PREFIX = "Bearer ";
 
     private final String secret;
     private final long expireTime;

@@ -1,7 +1,8 @@
 package me.youzheng.userservice.security.service;
 
 import lombok.RequiredArgsConstructor;
-import me.youzheng.userservice.security.domain.UserContext;
+import me.youzheng.common.security.domain.UserContext;
+import me.youzheng.common.security.domain.UserEntity;
 import me.youzheng.userservice.user.domain.User;
 import me.youzheng.userservice.user.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("존재하지 않는 계정입니다.");
         }
 
-        return new UserContext(user);
+        UserEntity userEntity = UserEntity.builder()
+            .email(user.getEmail())
+            .userNo(user.getUserNo())
+            .lockYn(user.isLockYn())
+            .userName(user.getUserName())
+            .password(user.getPassword())
+            .role(user.getRole())
+            .build();
+        return new UserContext(userEntity);
     }
 }

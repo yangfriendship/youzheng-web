@@ -20,6 +20,10 @@ public class UserContext implements UserDetails {
         this.userEntity = user;
     }
 
+    public Integer getUserNo() {
+        return this.userEntity.getUserNo();
+    }
+
     public boolean canLogin() {
         return isEnabled()
             && isAccountNonLocked()
