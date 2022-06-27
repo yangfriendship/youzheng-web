@@ -6,7 +6,22 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: youzheng_web
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        jdbc:
+          batch_size: 100
+  h2:
+    console:
+      enabled: true
+    datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem:testdb;MODE=MYSQL
+
+
 
 jwt:
   secret-key: jfasdklfjlaskdfjlaksdfjfklasdjflkasdjfkldsajdfjaklsdfjkasdlfjflkasdfjlk

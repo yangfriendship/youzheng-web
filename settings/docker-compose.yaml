@@ -33,7 +33,7 @@ services:
       - /Users/youzheng/Data/kafka:/var/run/docker.sock
   redis: # (4) 따로 Redis 가 있다면 주석처리
     image: redis:6.0.5
-    command: redis-server --requirepass changeme --port 6379
+    command: redis-server --requirepass dnwjd123 --port 6379
     container_name: redis-server
     hostname: redis-server
     labels:

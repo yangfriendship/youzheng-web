@@ -1,1 +1,28 @@
+spring:
+  application:
+    name: reply-service
+  profiles:
+    include: common
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        default_schema: youzheng_web
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        jdbc:
+          batch_size: 100
+  h2:
+    console:
+      enabled: true
+    datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem:testdb;MODE=MYSQL
 
+jwt:
+  secret-key: jfasdklfjlaskdfjlaksdfjfklasdjflkasdjfkldsajdfjaklsdfjkasdlfjflkasdfjlk
+  expired-seconds: 600
+
+server:
+  port: 8083

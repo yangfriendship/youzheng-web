@@ -22,6 +22,7 @@ public class BoardDto {
 
     private int viewCount;
 
+
     private MetaData metaData;
 
     public static BoardDto from(Board board) {
