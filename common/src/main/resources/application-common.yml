@@ -18,11 +18,20 @@ spring:
           batch_size: 100
   session:
     store-type: redis
-#  redis:
-#    host: localhost
-#    port: 6379
-#    password: dnwjd123
 
 jwt:
   secret-key: jfasdklfjlaskdfjlaksdfjfklasdjflkasdjfkldsajdfjaklsdfjkasdlfjflkasdfjlk
   expired-seconds: 600
+
+youzheng:
+  feign:
+    user-service:
+      url: 'http://localhost:8081'
+    board-service:
+      url: 'http://localhost:8082'
+    reply-service:
+      url: 'http://localhost:8083'
+    refreshtoken-service:
+      url: 'http://localhost:8084'
+
+
