@@ -10,7 +10,7 @@ import me.youzheng.userservice.user.domain.User;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreateRequest {
+public class UserCreateDto {
 
     private String loginId;
 

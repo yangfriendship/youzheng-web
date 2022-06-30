@@ -46,4 +46,14 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public UserResponse fetchByUserNo(Integer userNo) {
+        if (userNo == null || userNo < 0) {
+            throw new UserException("userNo.notfound", 404);
+        }
+        User result = this.userRepository.findById(userNo)
+            .orElseThrow(() -> new UserException("userNo.notfound", 404));
+        return UserResponse.from(result);
+    }
+
 }

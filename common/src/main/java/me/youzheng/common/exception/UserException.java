@@ -1,6 +1,7 @@
 package me.youzheng.common.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.Errors;
 
 public class UserException extends AbstractException {
 
@@ -20,4 +21,7 @@ public class UserException extends AbstractException {
         super(message, httpStatus.value());
     }
 
+    public UserException(Errors errors) {
+        super(errors);
+    }
 }

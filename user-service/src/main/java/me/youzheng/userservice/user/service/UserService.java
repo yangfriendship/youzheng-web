@@ -13,4 +13,6 @@ public interface UserService {
     User create(User user);
 
     Page<List<UserResponse>> fetchUsers(Pageable pageable);
+
+    UserResponse fetchByUserNo(Integer userNo);
 }

@@ -30,4 +30,5 @@ public class TokenLoginProcessorFilter extends AbstractAuthenticationProcessingF
         return getAuthenticationManager().authenticate(
             new UsernamePasswordAuthenticationToken(form.get("loginId"), form.get("password")));
     }
+
 }
