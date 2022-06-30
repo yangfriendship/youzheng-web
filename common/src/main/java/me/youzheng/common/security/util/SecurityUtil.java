@@ -9,4 +9,6 @@ public interface SecurityUtil {
 
     Integer getUserPrimaryKey();
 
+    boolean isOwner(Integer userNo);
+
 }

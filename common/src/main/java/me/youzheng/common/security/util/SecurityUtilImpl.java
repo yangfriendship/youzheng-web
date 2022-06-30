@@ -26,4 +26,10 @@ public class SecurityUtilImpl implements SecurityUtil {
         }
     }
 
+    @Override
+    public boolean isOwner(Integer userNo) {
+        Integer currentUserNo = getUserPrimaryKey();
+        return currentUserNo != null && currentUserNo.equals(userNo);
+    }
+
 }
