@@ -93,7 +93,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    @Description("User Save ")
+    @Description("User Save")
     public void create_success() {
         // given
         final String expected = "encodedPassword";

@@ -15,6 +15,6 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
         AuthenticationException exception) throws IOException, ServletException {
         // TODO do something
-        System.out.println("");
+        response.setStatus(401);
     }
 }
