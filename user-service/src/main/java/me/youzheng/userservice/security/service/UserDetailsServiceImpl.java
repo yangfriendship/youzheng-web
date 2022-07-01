@@ -25,6 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserEntity userEntity = UserEntity.builder()
             .email(user.getEmail())
             .userNo(user.getUserNo())
+            .loginId(user.getLoginId())
             .lockYn(user.isLockYn())
             .userName(user.getUserName())
             .password(user.getPassword())

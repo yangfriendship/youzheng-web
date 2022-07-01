@@ -65,10 +65,12 @@ public class JwtProvider {
 
         String loginId = (String) claims.get("loginId");
         String role = (String) claims.get("auth");
-        Integer id = (Integer) claims.get("id");
+        String email = (String) claims.get("aud");
 
+        Integer userNo = (Integer) claims.get("userNo");
         UserEntity user = UserEntity.builder()
-            .userNo(id)
+            .userNo(userNo)
+            .email(email)
             .role(Role.of(role))
             .loginId(loginId)
             .build();

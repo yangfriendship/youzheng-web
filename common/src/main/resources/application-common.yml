@@ -21,7 +21,7 @@ spring:
 
 jwt:
   secret-key: jfasdklfjlaskdfjlaksdfjfklasdjflkasdjfkldsajdfjaklsdfjkasdlfjflkasdfjlk
-  expired-seconds: 600
+  expired-seconds: 60000
 
 youzheng:
   feign:
@@ -33,5 +33,3 @@ youzheng:
       url: 'http://localhost:8083'
     refreshtoken-service:
       url: 'http://localhost:8084'
-
-
