@@ -9,4 +9,7 @@ public interface BoardRepositorySupporter {
 
     List<BoardDto> findAllBy(BoardFetchDto boardFetchDto, Pageable pageable);
 
+    long countBy(BoardFetchDto boardFetchDto);
+
+    long updateDeleteYn(Integer boardNo, boolean state);
 }

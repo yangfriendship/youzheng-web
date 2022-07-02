@@ -32,16 +32,17 @@ public class ReplyRepositorySupporterImpl implements ReplyRepositorySupporter {
             .fetch();
     }
 
-    private BooleanBuilder createWhere(Integer boardNo, Integer fromNumber) {
+    private BooleanBuilder createWhere(Integer boardNo, Integer fromPk) {
         BooleanBuilder builder = new BooleanBuilder();
         if (boardNo == null || boardNo < 0) {
             return builder;
         }
         builder.and(reply.boardNo.eq(boardNo));
 
-        if (fromNumber != null && fromNumber > 0) {
-            builder.and(reply.replyNo.gt(fromNumber));
+        if (fromPk != null && fromPk > 0) {
+            builder.and(reply.replyNo.gt(fromPk));
         }
+        builder.and(reply.metaData.deleteYn.isFalse());
 
         return builder;
     }

@@ -1,6 +1,10 @@
 package me.youzheng.boardservice.board.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.querydsl.core.annotations.QueryProjection;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +13,7 @@ import me.youzheng.common.domain.MetaData;
 
 @Data
 @Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class BoardDto {
 
@@ -22,7 +27,9 @@ public class BoardDto {
 
     private int viewCount;
 
+    private List<ReplyDto> replies = new ArrayList<>();
 
+    @JsonUnwrapped
     private MetaData metaData;
 
     public static BoardDto from(Board board) {

@@ -1,5 +1,6 @@
 package me.youzheng.boardservice.board.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import me.youzheng.common.domain.MetaData;
 
@@ -12,4 +13,8 @@ public class BoardFetchDto {
 
     private MetaData metaData;
 
+    @JsonIgnore
+    public String getTitleForLike() {
+        return "%" + title + "%";
+    }
 }

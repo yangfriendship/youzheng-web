@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import me.youzheng.common.security.util.JwtProvider;
+import me.youzheng.common.security.util.SecurityUtil;
+import org.springframework.boot.web.servlet.server.Encoding;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -17,7 +20,9 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 
     private final ObjectMapper objectMapper;
     private final JwtProvider jwtProvider;
-    public static final String TOKEN_KEY_NAME = "jwt";
+    private final SecurityUtil securityUtil;
+    public static final String TOKEN_KEY_NAME = "token";
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
         Authentication authentication) throws IOException {
@@ -27,8 +32,10 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 
         Map<String, Object> body = new HashMap<>();
         body.put(TOKEN_KEY_NAME, token);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+        body.put("user", this.securityUtil.getCurrentUser().getUserEntity());
+
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setCharacterEncoding(Encoding.DEFAULT_CHARSET.name());
         response.getWriter().write(this.objectMapper.writeValueAsString(body));
     }
 

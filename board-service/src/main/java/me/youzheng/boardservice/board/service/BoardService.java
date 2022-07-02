@@ -12,8 +12,13 @@ public interface BoardService {
 
     Board create(Board board);
 
-    Page<BoardDto> fetch(BoardFetchDto boardFetchDto, Pageable pageable);
+    Page<BoardDto> fetchBoards(BoardFetchDto boardFetchDto, Pageable pageable);
+
+    BoardDto fetchBoard(Integer boardNo);
+
+    long fetchBoardCountBy(BoardFetchDto boardFetchDto);
 
     boolean modify(Board board);
 
+    long deleteBy(Integer boardNo, Integer requestNo);
 }

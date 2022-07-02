@@ -2,6 +2,7 @@ package me.youzheng.common.domain;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.EntityListeners;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -14,6 +15,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+@Embeddable
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class MetaData {
@@ -39,7 +41,7 @@ public class MetaData {
     private boolean deleteYn;
 
     @PrePersist
-    protected void prePersist() {
+    protected void setInitData() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!(principal instanceof UserContext)) {
             this.createId = "SYSTEM";
@@ -53,7 +55,7 @@ public class MetaData {
     }
 
     @PreUpdate
-    protected void PreUpdate() {
+    protected void setLastModified() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!(principal instanceof UserContext)) {
             this.createId = "SYSTEM";

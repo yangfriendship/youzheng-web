@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import me.youzheng.common.security.util.JwtProvider;
 import me.youzheng.common.security.filter.TokenAuthenticationFilter;
+import me.youzheng.common.security.util.SecurityUtil;
+import me.youzheng.common.security.util.SecurityUtilImpl;
 import me.youzheng.userservice.security.filter.TokenLoginProcessorFilter;
 import me.youzheng.userservice.security.handler.AccessDeniedHandlerImpl;
 import me.youzheng.userservice.security.handler.AuthenticationEntryPointImpl;
@@ -131,7 +133,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
-        return new AuthenticationSuccessHandlerImpl(this.objectMapper, jwtProvider());
+        return new AuthenticationSuccessHandlerImpl(this.objectMapper, jwtProvider(),
+            securityUtil());
     }
 
     /**
@@ -172,6 +175,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         processorFilter.setAuthenticationSuccessHandler(this.authenticationSuccessHandler());
         processorFilter.setAuthenticationFailureHandler(this.authenticationFailureHandler());
         return processorFilter;
+    }
+
+    @Bean
+    public SecurityUtil securityUtil() {
+        return new SecurityUtilImpl();
     }
 
 }
