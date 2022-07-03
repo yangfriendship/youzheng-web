@@ -5,11 +5,16 @@ import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import me.youzheng.replyservice.reply.domain.Reply;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Builder
 @ToString
@@ -37,6 +42,17 @@ public class ReplyDto {
         this.userNo = userNo;
         this.userName = userName;
         this.createDateTime = createDateTime;
+    }
+
+    public static ReplyDto from(Reply reply) {
+        return ReplyDto.builder()
+            .replyNo(reply.getReplyNo())
+            .content(reply.getContent())
+            .createDateTime(reply.getMetaData().getCreateDateTime())
+            .userNo(reply.getMetaData().getCreatedNo())
+            .userName(reply.getMetaData().getCreateId())
+            .boardNo(reply.getBoardNo())
+            .build();
     }
 
     public Reply to() {

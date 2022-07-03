@@ -2,13 +2,14 @@ package me.youzheng.replyservice.reply.service;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import me.youzheng.common.domain.MetaData;
+import me.youzheng.common.domain.ScrollPage;
 import me.youzheng.common.security.util.SecurityUtil;
 import me.youzheng.replyservice.reply.domain.Reply;
 import me.youzheng.replyservice.reply.domain.dto.ReplyDto;
 import me.youzheng.replyservice.reply.exception.ReplyException;
 import me.youzheng.replyservice.reply.mapper.ReplyMapper;
 import me.youzheng.replyservice.reply.repository.ReplyRepository;
-import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
@@ -22,12 +23,14 @@ public class ReplyServiceImpl implements ReplyService {
     private final ReplyMapper replyMapper = ReplyMapper.INSTANCE;
 
     @Override
-    public Reply create(Reply reply) {
-        if (reply == null || ObjectUtils.isEmpty(reply.getReplyNo())
-            || StringUtils.hasLength(reply.getContent())) {
+    public ReplyDto create(Reply reply) {
+        if (reply == null || ObjectUtils.isEmpty(reply.getBoardNo())
+            || !StringUtils.hasLength(reply.getContent())) {
             throw new ReplyException("잘못 입력하셨습니다..");
         }
-        return this.replyRepository.save(reply);
+        reply.setMetaData(new MetaData());
+        Reply save = this.replyRepository.save(reply);
+        return ReplyDto.from(save);
     }
 
     @Override
@@ -43,8 +46,10 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<ReplyDto> fetchByBoardNo(Integer boardNo, Slice<Reply> slice) {
-        return null;
+    public List<ReplyDto> fetchByBoardNo(Integer boardNo, ScrollPage scrollPage) {
+        List<ReplyDto> result = this.replyRepository.findAllByBoardNo(boardNo,
+            scrollPage.getFromPk(), scrollPage.getSize());
+        return result;
     }
 
 }
