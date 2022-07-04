@@ -1,5 +1,7 @@
 package me.youzheng.boardservice.board.controller;
 
+import static me.youzheng.common.constants.UrlConstants.*;
+
 import lombok.RequiredArgsConstructor;
 import me.youzheng.boardservice.board.domain.Board;
 import me.youzheng.boardservice.board.domain.dto.BoardCreateDto;
@@ -8,6 +10,7 @@ import me.youzheng.boardservice.board.domain.dto.BoardFetchDto;
 import me.youzheng.boardservice.board.service.BoardService;
 import me.youzheng.boardservice.board.validate.BoardCreateValidator;
 import me.youzheng.boardservice.exception.BoardException;
+import me.youzheng.common.constants.UrlConstants;
 import me.youzheng.common.security.util.SecurityUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +33,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class BoardController {
 
+    public static final String URL_PREFIX = BOARD_SERVICE_URL;
+
     private final BoardCreateValidator boardCreateValidator;
     private final BoardService boardService;
     private final SecurityUtil securityUtil;
@@ -39,7 +44,7 @@ public class BoardController {
         webDataBinder.addValidators(boardCreateValidator);
     }
 
-    @PostMapping("/api/boards")
+    @PostMapping(URL_PREFIX)
     public ResponseEntity<BoardDto> create(@RequestBody BoardCreateDto boardCreateDto,
         Errors errors) {
         if (errors.hasErrors()) {
@@ -53,21 +58,21 @@ public class BoardController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
-    @GetMapping("/api/boards/{boardNo}")
+    @GetMapping(URL_PREFIX + "/{boardNo}")
     public ResponseEntity<BoardDto> fetchBoard(@PathVariable("boardNo") Integer boardNo) {
         BoardDto boardDto = this.boardService.fetchBoard(boardNo);
         return ResponseEntity.ok(boardDto);
     }
 
 
-    @GetMapping("/api/boards")
+    @GetMapping(URL_PREFIX)
     public ResponseEntity<Page<BoardDto>> fetchBoards(@PageableDefault Pageable pageable,
         @ModelAttribute BoardFetchDto boardFetchDto) {
         Page<BoardDto> result = this.boardService.fetchBoards(boardFetchDto, pageable);
         return ResponseEntity.ok(result);
     }
 
-    @PatchMapping("/api/boards/{boardNo}")
+    @PatchMapping(URL_PREFIX + "/{boardNo}")
     public ResponseEntity<?> modify(@PathVariable("boardNo") Integer boardNo, Errors errors,
         @RequestBody BoardDto boardDto) {
         Board board = boardDto.to();
@@ -79,7 +84,7 @@ public class BoardController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/api/boards/{boardNo}")
+    @DeleteMapping(URL_PREFIX + "/{boardNo}")
     public ResponseEntity<?> delete(@PathVariable("boardNo") Integer boardNo) {
         this.boardService.deleteBy(boardNo, this.securityUtil.getUserPrimaryKey());
         return ResponseEntity.noContent().build();

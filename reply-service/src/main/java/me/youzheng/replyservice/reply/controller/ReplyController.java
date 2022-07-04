@@ -1,15 +1,14 @@
 package me.youzheng.replyservice.reply.controller;
 
-import java.util.Collections;
+import static me.youzheng.common.constants.UrlConstants.BOARD_SERVICE_URL;
+import static me.youzheng.common.constants.UrlConstants.REPLY_SERVICE_URL;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.youzheng.common.domain.ScrollPage;
-import me.youzheng.replyservice.reply.domain.Reply;
 import me.youzheng.replyservice.reply.domain.dto.ReplyDto;
 import me.youzheng.replyservice.reply.service.ReplyService;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,7 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ReplyController {
 
-    public static final String URL_PREFIX = "/api/replies";
+    public static final String URL_PREFIX = REPLY_SERVICE_URL;
+    public static final String BOARD_URL_PREFIX = BOARD_SERVICE_URL;
     private final ReplyService replyService;
 
     @PostMapping(URL_PREFIX)
@@ -34,7 +34,7 @@ public class ReplyController {
         return ResponseEntity.status(201).body(result);
     }
 
-    @GetMapping("/api/boards/{boardNo}/replies")
+    @GetMapping(BOARD_URL_PREFIX + "/{boardNo}/replies")
     public ResponseEntity<List<ReplyDto>> fetchReplies(@PathVariable Integer boardNo,
         @RequestParam(required = false) ScrollPage scrollPage) {
         // TODO ArgumentMethodResolver
@@ -45,7 +45,7 @@ public class ReplyController {
         return ResponseEntity.ok(replies);
     }
 
-    @GetMapping("/api/replies")
+    @GetMapping(URL_PREFIX)
     public ResponseEntity<List<ReplyDto>> fetchRepliesAsSlice(
         @ModelAttribute ScrollPage scrollPage) {
         // TODO ArgumentMethodResolver

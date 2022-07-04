@@ -1,11 +1,11 @@
 package me.youzheng.userservice.user.controller;
 
+import static me.youzheng.common.constants.UrlConstants.*;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.youzheng.common.exception.UserException;
-import me.youzheng.common.security.annotation.LoginUser;
-import me.youzheng.common.security.domain.UserEntity;
 import me.youzheng.common.security.util.SecurityUtil;
 import me.youzheng.userservice.user.domain.User;
 import me.youzheng.userservice.user.domain.dto.UserCreateDto;
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class UserController {
 
-    public static final String URL_PREFIX = "/api/users";
+    public static final String URL_PREFIX = USER_SERVICE_URL;
 
     private final UserService userService;
     private final SecurityUtil securityUtil;
