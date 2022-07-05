@@ -2,7 +2,7 @@ package me.youzheng.boardservice.board.client;
 
 import java.util.List;
 import me.youzheng.boardservice.board.domain.dto.ReplyDto;
-import me.youzheng.boardservice.config.DefaultFeignConfig;
+import me.youzheng.common.config.DefaultFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;

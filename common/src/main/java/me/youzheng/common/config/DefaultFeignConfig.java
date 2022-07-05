@@ -1,4 +1,4 @@
-package me.youzheng.boardservice.config;
+package me.youzheng.common.config;
 
 import feign.Logger;
 import feign.Logger.Level;

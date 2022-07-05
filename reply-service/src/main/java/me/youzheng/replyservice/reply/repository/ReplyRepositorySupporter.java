@@ -7,6 +7,10 @@ import org.springframework.data.domain.Slice;
 
 public interface ReplyRepositorySupporter {
 
-    public List<ReplyDto> findAllByBoardNo(Integer boardNo, Integer fromNumber, int count);
+    List<ReplyDto> findAllByBoardNo(Integer boardNo, Integer fromNumber, int count);
+
+    long updateDeleteYnByBoardNo(Integer boardNo, boolean flag);
+
+    boolean existsByReplyNoAndUserNo(Integer replyNo, Integer userNo);
 
 }

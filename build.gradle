@@ -83,6 +83,8 @@ subprojects {
 
         implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
         implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+        // kafka
+        implementation 'org.springframework.kafka:spring-kafka'
     }
 }
 
