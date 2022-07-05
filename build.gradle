@@ -106,6 +106,14 @@ project(':reply-service') {
     }
 }
 
+project(':kafka-receiver') {
+    dependencies {
+        implementation project(':common')
+    }
+}
+
+
+
 task cleanGeneatedDir(type: Delete) {
     delete file('src/main/generated')
 }

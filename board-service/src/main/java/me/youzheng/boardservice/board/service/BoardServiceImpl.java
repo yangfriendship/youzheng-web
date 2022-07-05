@@ -62,16 +62,21 @@ public class BoardServiceImpl implements BoardService {
             .map(this.replyFeignClient::fetchRepliesByBoardNo)
             .observeOn(Schedulers.io())
             .retry(1)
-            .onErrorReturn(throwable -> {
-                log.error(throwable.getMessage());
-                return Collections.emptyList();
-            });
+            .doOnError(error -> log.error("RepliesFeign Fail Error: {}", error.getMessage()))
+            .onErrorReturn(throwable -> Collections.emptyList());
 
         Single<Board> boardObservable = Single.just(boardNo)
             .map(number -> this.boardRepository.findById(number).orElse(NullBoard.getInstance()))
             .observeOn(Schedulers.io())
             .retry(1);
 
+        boardObservable.subscribe(board -> {
+            if (board.canIncrementViewCount()) {
+                this.boardRepository.incrementViewCount(board.getBoardNo(), 1);
+            } else {
+
+            }
+        });
         return Single.zip(boardObservable, repliesObservable,
             (board, replies) -> {
                 BoardDto result = BoardDto.from(board);
@@ -98,7 +103,7 @@ public class BoardServiceImpl implements BoardService {
     public long deleteBy(Integer boardNo, Integer requestUserNo) {
         Board board = this.boardRepository.findById(boardNo)
             .orElseThrow(() -> new BoardException("존재하지 않는 게시물입니다."));
-        if (board.getUserNo() == null || !board.getBoardNo().equals(requestUserNo)) {
+        if (!board.isOwner(requestUserNo)) {
             throw new BoardException("작성자만 삭제할 수 있습니다.", 403);
         }
 

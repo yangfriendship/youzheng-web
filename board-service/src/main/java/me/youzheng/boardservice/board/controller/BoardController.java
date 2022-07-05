@@ -64,7 +64,6 @@ public class BoardController {
         return ResponseEntity.ok(boardDto);
     }
 
-
     @GetMapping(URL_PREFIX)
     public ResponseEntity<Page<BoardDto>> fetchBoards(@PageableDefault Pageable pageable,
         @ModelAttribute BoardFetchDto boardFetchDto) {
@@ -76,6 +75,8 @@ public class BoardController {
     public ResponseEntity<?> modify(@PathVariable("boardNo") Integer boardNo, Errors errors,
         @RequestBody BoardDto boardDto) {
         Board board = boardDto.to();
+        board.setBoardNo(boardNo);
+
         if (errors.hasErrors()) {
             throw new BoardException(errors);
         }

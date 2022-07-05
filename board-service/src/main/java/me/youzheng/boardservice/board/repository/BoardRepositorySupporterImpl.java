@@ -56,6 +56,15 @@ public class BoardRepositorySupporterImpl implements BoardRepositorySupporter {
             .execute();
     }
 
+    @Override
+    public long incrementViewCount(Integer boardNo, int count) {
+        return this.query
+            .update(board)
+            .set(board.viewCount, board.viewCount.add(count))
+            .where(board.boardNo.eq(boardNo))
+            .execute();
+    }
+
     private Predicate createWhere(BoardFetchDto boardFetchDto) {
         BooleanBuilder builder = new BooleanBuilder();
         // TODO full text match 생성하면 추가하자

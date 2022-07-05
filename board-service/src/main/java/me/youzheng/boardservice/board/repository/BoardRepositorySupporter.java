@@ -12,4 +12,6 @@ public interface BoardRepositorySupporter {
     long countBy(BoardFetchDto boardFetchDto);
 
     long updateDeleteYn(Integer boardNo, boolean state);
+
+    long incrementViewCount(Integer boardNo, int count);
 }

@@ -42,6 +42,17 @@ public class Board {
         this.metaData = new MetaData();
     }
 
+    public boolean isOwner(Integer userNo) {
+        if (this.metaData == null || this.metaData.getCreatedNo() == null) {
+            throw new IllegalArgumentException("Board 에 metadata 가 존재하지 않습니다.");
+        }
+        return this.metaData.getCreatedNo().equals(userNo);
+    }
+
+    public boolean canIncrementViewCount() {
+        return this.viewCount < 10;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
